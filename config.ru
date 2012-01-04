@@ -1,3 +1,3 @@
 require "helloworld"
 
-run Sinatra:Application
+run Sinatra::Application
