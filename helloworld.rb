@@ -15,9 +15,21 @@ post '/RegexRuby' do
   content_type :json
   @input = params[:input];
   @pattern = params[:pattern];
+  @options = params[:options];
+  @modifier = "";
   
   if (!@pattern.to_s.empty?)
-    @input.to_s.scan(/#{Regexp.escape(@pattern)}/).to_json;
+    @options.split(',').each { |x|
+      case x
+      when "IgnoreCase"
+        @modifier += "i";
+      when "Multiline"
+        @modifier += "m";
+      when "IgnoreWhiteSpace"
+        @modifer += "x"
+      end
+    }
+    params[:callback] + "(" + @input.to_s.scan(/#{Regexp.escape(@pattern)}/ + @modifier).to_json.to_s + ")";
   end
 end
 
