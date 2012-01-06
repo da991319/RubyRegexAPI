@@ -11,7 +11,7 @@ get '/testjson/:name' do
   params.to_json
 end
 
-post '/RegexRuby' do
+get '/RegexRuby' do
   content_type :json
   @input = params[:input];
   @pattern = params[:pattern];
